@@ -58,9 +58,9 @@ def SimonOracle(hs):
     out = 1
     for x in range(2**n):
         if(sol[x]==None):
-            sol[x] = out
+            sol[x] = out #x
             y = int(strxor(x,hs),2)
-            sol[y]=out
+            sol[y]=out  #y=x xor hs
             out = out + 1
     print(sol)
     qc = QuantumCircuit(2*n)
@@ -73,6 +73,7 @@ def SimonOracle(hs):
         for i in bitnotset(x, n):
             qc.x(i)
         qc.barrier()
+    qc.draw(output='mpl')
     return qc
 def cdot(x,y):
     n=len(x)
@@ -100,6 +101,7 @@ def SimonQ(hs):
         print("Risultato corretto")
     else :
         print("Risultato non corretto")
+        
     return z
 def Simon(hs):
     n = len(hs)
